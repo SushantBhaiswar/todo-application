@@ -83,7 +83,7 @@ const fetchTasks = async (request) => {
     let tasksPipeline = []
 
     // count filtered document
-    tasksPipeline.push({ $count: "size" })
+    tasksCountPipeline.push({ $count: "size" })
 
     // add limit
     tasksPipeline.push({ $limit: limit + 1 });
@@ -93,17 +93,20 @@ const fetchTasks = async (request) => {
 
     const mainProject = {
         $project: {
-            tasksCount: { $arrayElemAt: ['$docCount.size', 0] }
+            tasksCount: { $arrayElemAt: ['$tasksCount.size', 0] },
+            tasks: 1
         }
     }
     // final project
     basePipeline.push(mainProject)
 
-    let { tasksCount, tasks } = await db.TASK.aggregate(basePipeline) || {}
+    const response = await db.TASK.aggregate(basePipeline) || {}
+
+    let { tasksCount, tasks } = response?.[0]
 
     // find next cursor
     const lastTask =
-        tasks.length > limit
+        tasks?.length > limit
             ? tasks[tasks.length - 1]
             : null;
 
@@ -113,7 +116,7 @@ const fetchTasks = async (request) => {
 
 
     // remove extra notification if fetched
-    if (tasks.length > limit) tasks.pop()
+    if (tasks?.length > limit) tasks.pop()
     return {
         data: tasks,
         nextCursor,
