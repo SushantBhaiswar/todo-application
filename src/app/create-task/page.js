@@ -1,4 +1,3 @@
-// src/app/create-task/page.js
 "use client";
 
 import { useState } from "react";
@@ -16,7 +15,6 @@ export default function CreateTask() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        console.log("🚀 ~ handleSubmit ~ savedTasks:", savedTasks)
 
         // Add the new task to the saved tasks array
         savedTasks.push({ title, description, dueDate, status });

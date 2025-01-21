@@ -3,7 +3,7 @@ import React from 'react'
 import { apiConst } from './apiConst';
 
 
-const API_BASE_URL = 'http://13.233.31.68/api/v1/'
+const API_BASE_URL = 'http://3.109.1.108/api/v1/'
 // const API_BASE_URL = 'http://192.168.29.229:3001/v1/'
 
 const axiosInstance = axios.create({

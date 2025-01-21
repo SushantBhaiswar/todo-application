@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "framer-motion"
 import Modal from "../modal/CustomModal";
 import { useEffect, useState } from "react";
@@ -11,7 +13,7 @@ export default function TaskList({ tasks, setTasks, filter, isDataAdded, setIsDa
   const [dataLoading, setDataLoading] = useState(true)
 
 
-  const search = (localStorage.getItem('search'))
+  //const search = (localStorage.getItem('search'))
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +32,7 @@ export default function TaskList({ tasks, setTasks, filter, isDataAdded, setIsDa
     };
 
     fetchData();
-  }, [dataLoading, isDataAdded, filter, search]);
+  }, [dataLoading, isDataAdded, filter]);
 
   return (
     <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

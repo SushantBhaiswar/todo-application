@@ -1,3 +1,5 @@
+"use client";
+
 import "./page.css";
 import Header from "../../components/header/header"
 import Filter from "../../components/filter/filter"
