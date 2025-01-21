@@ -28,7 +28,7 @@ const fetchTask = catchAsync(async (req, res) => {
         code: httpStatus.OK,
         status: true,
         message: 'Tasks fetched successfully',
-        data: { results: response?.data, cursor: response?.nextCursor }
+        data: { results: response?.data, cursor: response?.nextCursor, totalCount : response?.totalCount }
     });
 })
 
